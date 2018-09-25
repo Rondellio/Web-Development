@@ -1,0 +1,72 @@
+﻿<html>
+<html lang="en">
+<head>
+  <title>Browse Weapons</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="functions.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+   <div id="menufix"> 
+       <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+           <ul class="nav navbar-nav">
+               <li><a href='/home'>Home</a></li>
+               <li><a href='/charClasses'>Character Classes</a></li>
+               <li><a href='/weapons'>Weapons</a></li>
+               <li><a href='/armor'>Armor</a></li>
+               <li><a href='/abilities'>Special Abilities</a></li>
+               <li><a href='/charBuild'>Build a Character</a></li>
+               <li><a href='/abilityChar'>Update Abilities</a></li>
+           </ul>
+      </div>
+  </nav>
+ </div>
+
+<div id="header">
+  <body id="mainScreen" background="/images/weapon.jpg">  
+ <h1 id ="weaponHeader">WEAPONS</h1>
+<div>
+<table id="myTable" style="width:75%">
+    <tr> 
+<!--      <th>ID</th>-->
+      <th>Name</th>
+      <th>Attack Buff</th>
+      <th>Health Buff</th> 
+      <th>Special Ability</th> 
+    </tr> 
+    <tbody>
+        {{#each weapons}} 
+        <tr> 
+<!--            <td>{{weapon_id}}</td>-->
+            <td>{{name}}</td> 
+            <td>{{attack_buff}}</td>  
+            <td>{{health_buff}}</td>
+            <td>{{ability}}</td>
+
+            <td><button onclick="deleteWeapon({{id}})">Delete</button></td>
+            <!--<td><a href="/weapons/{{id}}">Update</a></td> -->  
+        </tr> 
+        {{/each}} 
+    </tbody>
+</table> 
+<h3>Add a New Weapon:</h3>
+<form id="newWeapon" action="/weapons" method="post">
+    Weapon Name: <input type="text" name="name"><br>
+    Attack Buff: <input type="number" name="attack_buff"><br>
+    Health Buff: <input type="number" name="health_buff"><br>
+    Special Ability: <select name="ability"> 
+        <option value="NULL">None</option>
+        {{#each abilities}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+ </form> 
+</body>
+</div>
+</html>

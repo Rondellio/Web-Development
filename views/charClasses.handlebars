@@ -1,0 +1,66 @@
+﻿<html>
+<html lang="en">
+<head>
+  <title>Browse Character Classes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="functions.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+   <div id="menufix"> 
+       <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+           <ul class="nav navbar-nav">
+               <li><a href='/home'>Home</a></li>
+               <li><a href='/charClasses'>Character Classes</a></li>
+               <li><a href='/weapons'>Weapons</a></li>
+               <li><a href='/armor'>Armor</a></li>
+               <li><a href='/abilities'>Special Abilities</a></li>
+               <li><a href='/charBuild'>Build a Character</a></li>
+               <li><a href='/abilityChar'>Update Abilities</a></li>
+               <!--<li><a href='/UpdateChar'>Update a Character</a></li>   -->
+               <!-- <li><a href='/updateAbilities'>Update Abilities</a></li> -->
+           </ul>
+      </div>
+  </nav>
+ </div>
+
+<div id="header">
+  <body id="mainScreen" background="/images/beach.jpg">  
+<h1>CHARACTER CLASSES</h1>
+<div>
+<table id="myTable" style="width:75%">
+    <tr> 
+      <th>Name</th>
+      <th>Attack Power</th>
+      <th>Defense Power</th>
+      <th>Health Points</th> 
+    </tr> 
+    <tbody>
+        {{#each charClasses}} 
+        <tr> 
+            <td>{{name}}</td> 
+            <td>{{attack}}</td> 
+            <td>{{defense}}</td> 
+            <td>{{health}}</td>
+            <td><button onclick="deleteClass({{id}})">Delete</button></td>
+           <!-- <td><a href="/charClasses/{{id}}">Update</a></td> -->
+        </tr> 
+        {{/each}} 
+    </tbody>
+</table> 
+<h3>Add a New Class:</h3>
+<form id="newClass" action="/charClasses" method="post">
+    Class Name: <input type="text" name="name"><br>
+    Attack Power: <input type="number" name="attack_power"><br>
+    Defense Power: <input type="number" name="defense_power"><br>
+    Health Points: <input type="number" name="health_points"><br>
+    <input type="submit" value="Submit">
+ </form> 
+</body>
+</div>
+</html>

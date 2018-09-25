@@ -1,0 +1,112 @@
+﻿<html>
+<html lang="en">
+<head>
+  <title>Build a Character</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="functions.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+   <div id="menufix"> 
+       <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+           <ul class="nav navbar-nav">
+               <li><a href='/home'>Home</a></li>
+               <li><a href='/charClasses'>Character Classes</a></li>
+               <li><a href='/weapons'>Weapons</a></li>
+               <li><a href='/armor'>Armor</a></li>
+               <li><a href='/abilities'>Special Abilities</a></li>
+               <li><a href='/charBuild'>Build a Character</a></li>
+               <li><a href='/abilityChar'>Update Abilities</a></li>
+               <!--  <li><a href='/updateChar'>Update a Character</a></li>  -->
+               <!-- <li><a href='/updateAbilities'>Update Abilities</a></li>  -->
+           </ul>
+      </div>
+  </nav>
+ </div>
+
+<div id="header">
+  <body id="mainScreen" background="/images/charbuild.jpg">  
+ <h1 id ="charbuildHeader">Build a Character</h1>
+
+ <form id='filter_chars' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label id="filterHeader">Filter by Character Class</label>
+    <select id='class_filter' name="class"> 
+        {{#each charClasses}}
+        <option value="{{class_id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    <!--Next line will have to be changed -->
+    <input type="button" value="Filter" onclick="filterCharsByClass()">
+</form>
+
+<div>
+<table id="myTable" style="width:75%">
+    <tr> 
+      <th>Name</th>
+      <th>Class</th>
+      <th>Gender</th>
+      <th>Attack Power</th>
+      <th>Defense Power</th>
+      <th>Health Points</th>
+      <th>Armor</th>
+      <th>Weapon</th>
+     <!-- <th>Special Ability</th> -->
+    </tr> 
+    <tbody>
+        {{#each createdChars}} 
+        <tr> 
+            <td>{{name}}</td> 
+            <td>{{class}}</td>
+            <td>{{gender}}</td>
+            <td>{{attack_power}}</td>
+            <td>{{defense_power}}</td>
+            <td>{{health_points}}</td>
+            <td>{{armor}}</td>
+            <td>{{weapon}}</td>
+            <td><a href="/charBuild/{{id}}">Update</a></td>
+        <!--    <td>{{abilities}}</td>  -->
+            <td><button onclick="deleteChar({{id}})">Delete</button></td>
+        </tr> 
+        {{/each}} 
+    </tbody>
+</table> 
+<h3 id ="charbuildHeader"> Add a New Character:</h3>
+<form id="newChar" action="/charBuild" method="post">
+    <strong>Name: <input type="text" name="name"><br>
+    Class: <select name="class"> 
+        {{#each charClasses}}
+      <option value="{{class_id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    Gender: <select name="gender">
+      <option value="M">Male</option>
+      <option value="F">Female</option>
+      </select>
+    Armor: <select name="armor"> 
+        {{#each armor}}
+      <option value="{{armor_id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+     Weapon: <select name="weapon"> 
+        {{#each weapons}}
+      <option value="{{weapon_id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+   <!-- Special Ability: <select name="ability"> 
+        {{#each abilities}}
+      <option value="{{ability_id}}">{{name}}</option>
+        {{/each}}
+      
+    </select><br> -->
+  </strong>
+    <input type="submit" value="Submit">
+ </form> 
+</body>
+</div>
+</html>

@@ -1,0 +1,29 @@
+
+<html>
+<h1>Update {{imp_chars.name}} :</h1>
+<form id="update-char" action="/charBuild" method="post">
+    Name: <input type="text" name="name" value="{{imp_chars.name}}"><br>
+    Class: <select name="class" id="class-selector">
+        {{#each charClasses}}
+        <option value="{{class_id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    Gender: <select name="gender">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select>
+    Armor: <select name="armor" id="armor-selector">
+        {{#each armor}}
+        <option value="{{armor_id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    Weapon:  <select name="weapon" id="weapon-selector">
+        {{#each weapons}}
+        <option value="{{weapon_id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+</form>
+<button onclick="updateChar({{imp_chars.id}})">Update</button>
+<button onclick="updateAbilities({{imp_chars.id}})">Update Special Abilities</button>  <!-- will link to separate page -->
+<!--<script defer>select({{person.homeworld}});</script>  -->   <!-- not sure what needs to go here -->
+</html>

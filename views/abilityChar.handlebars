@@ -1,0 +1,78 @@
+﻿<html>
+<html lang="en">
+<head>
+  <title>Build a Character</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="functions.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="menufix">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li><a href='/home'>Home</a></li>
+                    <li><a href='/charClasses'>Character Classes</a></li>
+                    <li><a href='/weapons'>Weapons</a></li>
+                    <li><a href='/armor'>Armor</a></li>
+                    <li><a href='/abilities'>Special Abilities</a></li>
+                    <li><a href='/charBuild'>Build a Character</a></li>
+                    <!--  <li><a href='/updateChar'>Update a Character</a></li>  -->
+                    <!-- <li><a href='/updateAbilities'>Update Abilities</a></li>  -->
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div id="header">
+        <body id="mainScreen" background="/images/skyline.jpg">
+            <h1 id="charbuildHeader">Add or Change a Character's Special Abilities</h1>
+    </div>
+
+    {{#each foo}}
+    {{this}}
+    {{/each}}
+
+    <div>
+        <!-- dropdown menu of characters by name -->
+        <form id="add_char_abilities" action="/abilityChar" method="post">
+            Character: <select name='char'>
+                {{#each char}}
+                <option value='{{char_id}}'>{{name}}</option>
+                {{/each}}
+            </select>
+            <br>
+            Special Abilities: <select multiple name="abilities">
+                {{!-- We display title but the value that is submitted through the form is actually the certificate's id --}}
+                {{#each abilities}}
+                <option value="{{ability_id}}">{{name}}</option>
+                {{/each}}
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <br />
+    <h2> List of Characters with their Special Abilities </h2>
+    <table>
+        <thead>
+        <th>Name</th>
+        <th>Special Ability</th>
+        </thead>
+        <tbody>
+            {{#each char_with_ability}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{ability}}</td>
+                <td><button onclick="deleteCharAbility({{char_id}},{{ability_id}})">Delete</button></td>
+                <!-- anything else here? update again?-->
+            </tr>
+            {{else}}
+            <b> No characters with any special abilities found! Grant some using the form. </b>
+            {{/each}}
+        </tbody>
+    </table>
+</html>

@@ -1,0 +1,66 @@
+﻿<html>
+<html lang="en">
+<head>
+  <title>Browse Armor Choices</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="functions.js">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+   <div id="menufix"> 
+       <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+           <ul class="nav navbar-nav">
+               <li><a href='/home'>Home</a></li>
+               <li><a href='/charClasses'>Character Classes</a></li>
+               <li><a href='/weapons'>Weapons</a></li>
+               <li><a href='/armor'>Armor</a></li>
+               <li><a href='/abilities'>Special Abilities</a></li>
+               <li><a href='/charBuild'>Build a Character</a></li>
+               <li><a href='/abilityChar'>Update Abilities</a></li>
+               <!--<li><a href='/updateChar'>Update a Character</a></li> -->
+               <!--<li><a href='/updateAbilities'>Update Abilities</a></li> -->
+           </ul>
+      </div>
+  </nav>
+ </div>
+
+<div id="header">
+  <body id="mainScreen" background="/images/armor.jpg">  
+ <h1 id ="armorHeader">ARMOR</h1>
+<div>
+<table id="myTable" style="width:75%">
+    <tr> 
+      <th>Name</th>
+      <th>Defense Buff</th>
+      <th>Health Buff</th> 
+    </tr> 
+    <tbody>
+        {{#each armor}} 
+        <tr> 
+            <td>{{name}}</td> 
+            <td>{{defense_buff}}</td> 
+            <td>{{health_buff}}</td>
+            <td><button onclick="deleteArmor({{id}})">Delete</button></td>
+            <!--
+            <td><a href="/armor/{{id}}">Update</a></td> 
+          -->
+        </tr> 
+        {{/each}} 
+    </tbody>
+</table> 
+<h3 id ="armorHeader"> Add a New Armor Set:</h3>
+<form id="newArmor" action="/armor" method="post">
+    <strong>Armor Name: <input type="text" name="name"><br>
+    Defense Buff: <input type="number" name="defense_buff"><br>
+    Health Buff: <input type="number" name="health_buff"><br>
+  </strong>
+    <input type="submit" value="Submit">
+ </form> 
+</body>
+</div>
+</html>
